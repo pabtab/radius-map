@@ -1,26 +1,14 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Vuesax from 'vuesax'
+import VModal from 'vue-js-modal'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import VueToast from 'vue-toast-notification';
 
 import 'vue-toast-notification/dist/theme-default.css';
 
-import 'vuesax/dist/vuesax.css' //Vuesax styles
-
 Vue.use(VueToast);
 
-Vue.use(Vuesax, {
-  theme:{
-    colors:{
-      primary:'rgb(5, 173, 88)',
-      success:'rgb(23, 201, 100)',
-      danger:'rgb(242, 19, 93)',
-      warning:'rgb(255, 130, 0)',
-      dark:'rgb(36, 33, 69)'
-    }
-  }
-})
+Vue.use(VModal, { dialog: true })
 
 Vue.use(VueGoogleMaps, {
   load: {

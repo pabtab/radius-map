@@ -1,6 +1,6 @@
 <template>
   <div>
-    <GmapMap :center="center" :zoom="zoom" ref="map" style="width: 100%; height: 92vh">
+    <GmapMap :center="center" :zoom="zoom" ref="map" :style="styleMap">
       <GmapCircle
         :center="center"
         :radius="1000"
@@ -8,6 +8,10 @@
         :options="{fillColor:'yellow',fillOpacity:0.3}"
         v-if="location"
       ></GmapCircle>
+      <GmapMarker
+        :position="center"
+        :draggable="true"
+      />
     </GmapMap>
     <button class="location-icon" aria-label="Get Position" @click="getCenter" v-show="!gettingLocation && !location">
       <img src="../assets/gps.png" alt="center map"/>
@@ -21,9 +25,13 @@ export default {
   props: {
     msg: String
   },
+  beforeMount() {
+    this.styleMap.height = `${window.innerHeight - 60}px`;
+  },
   data() {
     return {
       zoom: 10,
+      heightCus: window.innerHeight,
       center: { lat: 6.2441988, lng: -75.6512521 },
       markers: [
         { Id: 1, name: "Oslo", position: { lat: 59.923043, lng: 10.752839 } },
@@ -33,12 +41,18 @@ export default {
         { Id: 5, name: "Paris", position: { lat: 48.856127, lng: 2.346525 } }
       ],
       gettingLocation: false,
-      location: null
+      location: null,
+      styleMap: {
+        height: '766px',
+        width: '100%',
+      }
     };
   },
   methods: {
     async getCenter() {
       this.gettingLocation = true;
+      console.log(this.heightCus)
+      this.styleMap.height = this.heightCus
       try {
         this.gettingLocation = false;
         this.location = await this.getLocation();
@@ -73,10 +87,6 @@ export default {
 </script>
 
 <style scoped>
-  .Map {
-    width: 100%;
-    height: 100%;
-  }
 
   .location-icon {
     /* Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a> */

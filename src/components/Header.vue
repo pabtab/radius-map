@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <h1>Calcula tu radio</h1>
+    <h1>Calcula tu radio - 1Km</h1>
   </header>
 </template>
 
@@ -13,7 +13,7 @@ export default {
 <style scoped>
   .header {
     background-color: steelblue;
-    height: 8vh;
+    height: 60px;
     min-height: 50px;
     display: flex;
     align-items: center;
