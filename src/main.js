@@ -3,9 +3,9 @@ import App from './App.vue'
 import Vuesax from 'vuesax'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
-import {API_KEY} from './env'
-
 import 'vuesax/dist/vuesax.css' //Vuesax styles
+
+
 
 Vue.use(Vuesax, {
   theme:{
@@ -19,10 +19,11 @@ Vue.use(Vuesax, {
   }
 })
 
+console.log(process.env.VUE_APP_API_KEY)
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: API_KEY,
+    key: process.env.VUE_APP_API_KEY,
     libraries: 'places',
   },
   installComponents: true
