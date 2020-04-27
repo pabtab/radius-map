@@ -1,5 +1,32 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Vuesax from 'vuesax'
+import * as VueGoogleMaps from 'vue2-google-maps'
+
+import {API_KEY} from './env'
+
+import 'vuesax/dist/vuesax.css' //Vuesax styles
+
+Vue.use(Vuesax, {
+  theme:{
+    colors:{
+      primary:'rgb(5, 173, 88)',
+      success:'rgb(23, 201, 100)',
+      danger:'rgb(242, 19, 93)',
+      warning:'rgb(255, 130, 0)',
+      dark:'rgb(36, 33, 69)'
+    }
+  }
+})
+
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: API_KEY,
+    libraries: 'places',
+  },
+  installComponents: true
+})
 
 Vue.config.productionTip = false
 
