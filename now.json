@@ -1,7 +1,9 @@
 {
   "name": "Mapa - Radio de tu posicion",
   "version": 2,
+  "alias": "Mapa-radio",
   "env": {
     "NODE_ENV": "production"
-  }
+  },
+  "builds": [{ "src": "dist/" }]
 }
