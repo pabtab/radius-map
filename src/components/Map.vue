@@ -1,6 +1,6 @@
 <template>
   <div>
-    <GmapMap :center="center" :zoom="zoom" ref="map" :style="styleMap">
+    <GmapMap :center="center" :zoom="zoom" ref="map" :style="styleMap" :options="optionsMaps">
       <GmapCircle
         :center="center"
         :radius="1000"
@@ -33,6 +33,15 @@ export default {
   data() {
     return {
       zoom: 10,
+      optionsMaps: {
+        zoomControl: true,
+        mapTypeControl: true,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: true,
+        fullscreenControl: false,
+        disableDefaultUI: false
+      },
       heightCus: window.innerHeight,
       center: { lat: 6.2441988, lng: -75.6512521 },
       markers: [
@@ -90,7 +99,6 @@ export default {
         }
 
         navigator.geolocation.getCurrentPosition(pos => {
-          console.log(pos)
           resolve(pos);
         }, err => {
           reject(err);
