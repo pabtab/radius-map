@@ -1,4 +1,2 @@
-*
-!package.json
-!packages/*/*.js
-!dist
+yarn.lock
+dist
