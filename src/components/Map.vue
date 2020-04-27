@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import Vue from 'vue'
+
 export default {
   name: 'Map',
   props: {
@@ -51,16 +53,26 @@ export default {
   methods: {
     async getCenter() {
       this.gettingLocation = true;
-      console.log(this.heightCus)
       this.styleMap.height = this.heightCus
       try {
         this.gettingLocation = false;
         this.location = await this.getLocation();
+
         const {latitude, longitude} = this.location.coords;
         this.center = { lat: latitude, lng: longitude };
         this.zoom = 15;
-        console.log(this.location)
+
+        setTimeout(() => {
+          Vue.$toast.info('Si piensas salir, recuerda tomar todas las medidas de precaución.', {
+            position: 'top-right',
+            duration: 30000
+          })
+        }, 2000)
       } catch(e) {
+        Vue.$toast.error('No tienes habilitado la ubicación por GPS, intenta habilitar los permisos de ubicación.', {
+          position: 'top-right',
+          duration: 5000
+        })
         this.gettingLocation = false;
         this.errorStr = e.message;
       }
@@ -70,6 +82,10 @@ export default {
       return new Promise((resolve, reject) => {
 
         if(!("geolocation" in navigator)) {
+          Vue.$toast.error('No tienes disponible ubicación por GPS, intenta con otro dispositivo.', {
+            position: 'top-right',
+            duration: 5000
+          })
           reject(new Error('Geolocation is not available.'));
         }
 
