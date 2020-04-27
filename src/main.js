@@ -2,10 +2,13 @@ import Vue from 'vue'
 import App from './App.vue'
 import Vuesax from 'vuesax'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import VueToast from 'vue-toast-notification';
+
+import 'vue-toast-notification/dist/theme-default.css';
 
 import 'vuesax/dist/vuesax.css' //Vuesax styles
 
-
+Vue.use(VueToast);
 
 Vue.use(Vuesax, {
   theme:{
