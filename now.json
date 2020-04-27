@@ -6,9 +6,10 @@
     "NODE_ENV": "production"
   },
   "builds": [
-    { "src": "*.html", "use": "@now/static" }
+    { "src": "*.html", "use": "@now/static" },
+    { "src": "*.js", "use": "@now/node" }
   ],
   "routes": [
-    { "src": "/", "dest": "./index.html" }
+    { "src": "/", "dest": "index.html" }
   ]
 }

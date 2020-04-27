@@ -64,7 +64,7 @@ export default {
           resolve(pos);
         }, err => {
           reject(err);
-        });
+        }, {enableHighAccuracy: true});
 
       });
     }

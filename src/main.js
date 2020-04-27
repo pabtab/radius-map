@@ -22,8 +22,6 @@ Vue.use(Vuesax, {
   }
 })
 
-console.log(process.env.VUE_APP_API_KEY)
-
 Vue.use(VueGoogleMaps, {
   load: {
     key: process.env.VUE_APP_API_KEY,
