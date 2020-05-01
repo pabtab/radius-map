@@ -5,6 +5,7 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import VueToast from 'vue-toast-notification';
 
 import 'vue-toast-notification/dist/theme-default.css';
+import './registerServiceWorker'
 
 Vue.use(VueToast);
 
