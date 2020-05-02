@@ -9,7 +9,7 @@
         v-if="location"
       ></GmapCircle>
       <GmapMarker
-        :position="center"
+        :position="userPosition"
         :draggable="true"
       />
     </GmapMap>
@@ -44,6 +44,7 @@ export default {
       },
       heightCus: window.innerHeight,
       center: { lat: 6.2441988, lng: -75.6512521 },
+      userPosition: { lat: 6.2441988, lng: -75.6512521 },
       markers: [
         { Id: 1, name: "Oslo", position: { lat: 59.923043, lng: 10.752839 } },
         { Id: 2, name: "Stockholm", position: { lat: 59.339025, lng: 18.065818 } },
@@ -69,7 +70,10 @@ export default {
 
         const {latitude, longitude} = this.location.coords;
         this.center = { lat: latitude, lng: longitude };
+        this.userPosition = { lat: latitude, lng: longitude }
         this.zoom = 15;
+        console.log('enter')
+        this.trackPosition();
 
         setTimeout(() => {
           Vue.$toast.info('Si piensas salir, recuerda tomar todas las medidas de precaución.', {
@@ -105,7 +109,22 @@ export default {
         }, {enableHighAccuracy: true});
 
       });
+    },
+    trackPosition() {
+      navigator.geolocation.watchPosition(
+        pos => {
+          //this.gettingLocation = false;
+          this.userPosition.lat = pos.coords.latitude;
+          this.userPosition.lng = pos.coords.longitude;
+          console.log(pos)
+        },
+        err => {
+          //this.gettingLocation = false;
+          this.errorStr = err.message;
+        }
+      );
     }
+
   }
 }
 </script>

@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.50219047c721f396cc778ef1dc882787.js"
+  "/precache-manifest.1fc6286c4bf9b32d28f4d5dfd2118756.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "radius-map"});
